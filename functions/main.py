@@ -105,7 +105,9 @@ async def webhook_im(request: Request, background_tasks: BackgroundTasks):
         _log("schedule", f"open_id={open_id[:10]}.. text={text[:30]}")
         background_tasks.add_task(process, open_id, text)
     else:
-        _log("skip", f"open_id={open_id[:10]} text={text[:20]}")
+        event = body.get("event", {})
+        msg = event.get("message", {})
+        _log("skip", f"open_id={open_id[:10]} text={text[:20]} event_keys={list(event.keys())} msg_keys={list(msg.keys())}")
     return {"code": 0}
 
 
