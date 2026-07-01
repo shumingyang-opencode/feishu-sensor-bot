@@ -1,0 +1,26 @@
+{
+  "name": "sensor-setting-bot",
+  "description": "Sensor 初始化設定產生器 — 搜尋飛書文檔 → AI 萃取參數 → 產出 TXT",
+  "runtime": "python3.9",
+  "memory": 256,
+  "timeout": 120,
+  "handler": "main.handler",
+  "events": [
+    {
+      "type": "im.message.receive_v1",
+      "handler": "main.on_message"
+    },
+    {
+      "type": "card.action.trigger",
+      "handler": "main.on_card_action"
+    }
+  ],
+  "env": {
+    "LLM_PROVIDER": "openai",
+    "LLM_MODEL": "gpt-4o-mini",
+    "LLM_API_KEY": "",
+    "LLM_BASE_URL": "",
+    "SESSION_BASE_ID": "",
+    "SESSION_TABLE_ID": ""
+  }
+}
