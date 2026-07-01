@@ -46,6 +46,10 @@ def _log(event_type: str, msg: str = ""):
 
 def _get_open_id(body: dict) -> str:
     try:
+        return body["event"]["sender"]["sender_id"]["open_id"]
+    except (KeyError, TypeError):
+        pass
+    try:
         return body["event"]["message"]["sender"]["sender_id"]["open_id"]
     except (KeyError, TypeError):
         return ""
